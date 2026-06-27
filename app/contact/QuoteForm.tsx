@@ -30,6 +30,7 @@ export function QuoteForm() {
   }
 
   const errors = state.fieldErrors ?? {};
+  const v = state.values ?? {};
   const inputClass =
     "w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold";
 
@@ -64,6 +65,7 @@ export function QuoteForm() {
             name="name"
             type="text"
             required
+            defaultValue={v.name}
             className={inputClass}
             placeholder="Your name"
           />
@@ -77,6 +79,7 @@ export function QuoteForm() {
             id="phone"
             name="phone"
             type="tel"
+            defaultValue={v.phone}
             className={inputClass}
             placeholder="(000) 000-0000"
           />
@@ -91,6 +94,7 @@ export function QuoteForm() {
           id="email"
           name="email"
           type="email"
+          defaultValue={v.email}
           className={inputClass}
           placeholder="you@example.com"
         />
@@ -102,7 +106,7 @@ export function QuoteForm() {
           <label htmlFor="service" className="mb-1.5 block text-sm font-medium">
             Service needed
           </label>
-          <select id="service" name="service" className={inputClass} defaultValue="">
+          <select id="service" name="service" className={inputClass} defaultValue={v.service ?? ""}>
             <option value="">Select a service…</option>
             {services.map((s) => (
               <option key={s.slug} value={s.title}>
@@ -120,6 +124,7 @@ export function QuoteForm() {
             id="material"
             name="material"
             type="text"
+            defaultValue={v.material}
             className={inputClass}
             placeholder="e.g. Aluminum, Mild Steel"
           />
@@ -135,6 +140,7 @@ export function QuoteForm() {
             id="location"
             name="location"
             type="text"
+            defaultValue={v.location}
             className={inputClass}
             placeholder="City / address"
           />
@@ -150,6 +156,7 @@ export function QuoteForm() {
             id="completion"
             name="completion"
             type="date"
+            defaultValue={v.completion}
             className={inputClass}
           />
         </div>
@@ -166,6 +173,7 @@ export function QuoteForm() {
           id="measurements"
           name="measurements"
           type="text"
+          defaultValue={v.measurements}
           className={inputClass}
           placeholder="e.g. 4ft x 2ft frame, 1/4 inch plate"
         />
@@ -180,6 +188,7 @@ export function QuoteForm() {
           name="details"
           rows={5}
           required
+          defaultValue={v.details}
           className={inputClass}
           placeholder="Describe the work you need done."
         />
@@ -190,7 +199,8 @@ export function QuoteForm() {
         <input
           type="checkbox"
           name="mobile"
-          className="h-4 w-4 rounded border-border bg-black accent-[var(--gold)]"
+          defaultChecked={v.mobile === "on" || v.mobile === "yes"}
+          className="h-4 w-4 rounded border-border bg-background accent-[var(--gold)]"
         />
         Mobile (on-site) service required
       </label>

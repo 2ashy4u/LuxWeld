@@ -1,11 +1,14 @@
 "use server";
 
+import nodemailer from "nodemailer";
 import { services } from "@/lib/data";
+import { site } from "@/lib/site";
 
 export type QuoteState = {
   status: "idle" | "success" | "error";
   message: string;
   fieldErrors?: Record<string, string>;
+  values?: Record<string, string>;
 };
 
 const validServiceTitles = new Set(services.map((s) => s.title));
@@ -45,11 +48,26 @@ export async function submitQuote(
   if (service && !validServiceTitles.has(service))
     fieldErrors.service = "Please choose a valid service.";
 
+  // Preserve what the user typed so the form can repopulate on error.
+  const values: Record<string, string> = {
+    name,
+    email,
+    phone,
+    service,
+    location,
+    material,
+    measurements,
+    completion,
+    mobile,
+    details,
+  };
+
   if (Object.keys(fieldErrors).length > 0) {
     return {
       status: "error",
       message: "Please fix the highlighted fields.",
       fieldErrors,
+      values,
     };
   }
 
@@ -69,20 +87,65 @@ export async function submitQuote(
   };
 
   // --- Delivery ---
-  // To actually receive these, wire up an email/CRM provider here.
-  // Example with Resend (npm i resend), using a RESEND_API_KEY env var:
-  //
-  //   import { Resend } from "resend";
-  //   const resend = new Resend(process.env.RESEND_API_KEY);
-  //   await resend.emails.send({
-  //     from: "Quotes <quotes@yourdomain.com>",
-  //     to: "info@luxurywelding.com",
-  //     subject: `New quote request from ${name}`,
-  //     text: JSON.stringify(payload, null, 2),
-  //   });
-  //
-  // Until then, log on the server so nothing is lost during development.
-  console.log("[Luxury Welding] New quote request:", payload);
+  // Sends the quote request to the business inbox via Gmail SMTP.
+  // Requires two environment variables (set in .env.local, never committed):
+  //   GMAIL_USER          your full Gmail address
+  //   GMAIL_APP_PASSWORD  a 16-char Google App Password (not your login password)
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailPass = process.env.GMAIL_APP_PASSWORD;
+
+  const lines = [
+    `Name: ${name}`,
+    `Email: ${email || "—"}`,
+    `Phone: ${phone || "—"}`,
+    `Service: ${service || "—"}`,
+    `Material: ${material || "—"}`,
+    `Location: ${location || "—"}`,
+    `Measurements: ${measurements || "—"}`,
+    `Desired completion: ${completion || "—"}`,
+    `Mobile service requested: ${payload.mobileServiceRequested ? "Yes" : "No"}`,
+    "",
+    "Details:",
+    details,
+    "",
+    `Submitted: ${payload.submittedAt}`,
+  ].join("\n");
+
+  if (!gmailUser || !gmailPass) {
+    // Email isn't configured yet — log so nothing is lost during development.
+    console.warn(
+      "[Luxury Welding] GMAIL_USER / GMAIL_APP_PASSWORD not set; logging instead of emailing.",
+    );
+    console.log("[Luxury Welding] New quote request:", payload);
+    return {
+      status: "success",
+      message:
+        "Thanks! Your request was received. We'll get back to you with a free estimate as soon as possible.",
+    };
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: gmailUser, pass: gmailPass },
+    });
+
+    await transporter.sendMail({
+      from: `"${site.name} Website" <${gmailUser}>`,
+      to: site.email,
+      replyTo: email || undefined,
+      subject: `New quote request from ${name}`,
+      text: lines,
+    });
+  } catch (err) {
+    console.error("[Luxury Welding] Failed to send quote email:", err);
+    return {
+      status: "error",
+      message:
+        "Sorry, something went wrong sending your request. Please call or email us directly.",
+      values,
+    };
+  }
 
   return {
     status: "success",
