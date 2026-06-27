@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Luxury Welding
 
-## Getting Started
+Marketing website for **Luxury Welding** — mobile welding, fabrication, and repair services. Built with Next.js (App Router), TypeScript, and Tailwind CSS v4. Black & gold theme.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # start dev server at http://localhost:3000
+npm run build    # production build
+npm run start    # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  layout.tsx          Root layout: header, footer, SEO metadata, JSON-LD
+  page.tsx            Home page
+  services/page.tsx   Full services list (anchored by category)
+  pricing/page.tsx    Pricing cards
+  about/page.tsx      About + Why Choose Us
+  contact/
+    page.tsx          Quote request page
+    QuoteForm.tsx     Client form (React 19 useActionState)
+    actions.ts        Server action that validates & handles submissions
+  globals.css         Theme tokens (black & gold)
+components/           Header, Footer, Logo, CtaBand
+lib/
+  site.ts             Business name, phone, email, hours, nav
+  data.ts             Services, materials, processes, pricing, etc.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Things to finish
 
-## Learn More
+1. **Logo** — drop your logo file in `public/` and swap the placeholder in
+   `components/Logo.tsx` (replace the `LW` block with `next/image`).
+2. **Contact details** — update phone, email, service area, and hours in
+   `lib/site.ts`.
+3. **Pricing** — replace the `$___` and `___` placeholders in `lib/data.ts`.
+4. **Quote delivery** — the form currently logs submissions on the server.
+   Wire up an email provider in `app/contact/actions.ts` (a Resend example is
+   included in the comments). Add your API key in a `.env.local` file (never
+   commit secrets).
+5. **Photos** — add real project photos to `public/` and reference them on the
+   home and services pages.
 
-To learn more about Next.js, take a look at the following resources:
+## Brand colors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Token        | Value     |
+|--------------|-----------|
+| `gold`       | `#d4af37` |
+| `gold-light` | `#e7c65b` |
+| `gold-dark`  | `#a9851d` |
+| background   | `#0a0a0a` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Defined in `app/globals.css` and usable as Tailwind classes (`text-gold`,
+`bg-gold`, `border-gold`, etc.).
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optimized for [Vercel](https://vercel.com). Push to a Git repo and import it,
+or run `vercel`. All pages are statically prerendered; the quote form runs as a
+server action.
+# LuxWeld

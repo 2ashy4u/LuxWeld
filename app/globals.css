@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --surface: #141414;
+  --surface-2: #1c1c1c;
+  --foreground: #f5f5f5;
+  --muted: #a3a3a3;
+  --border: #2a2a2a;
+
+  /* Brand: black & gold */
+  --gold: #d4af37;
+  --gold-light: #e7c65b;
+  --gold-dark: #a9851d;
+  --black: #0a0a0a;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Gold selection */
+::selection {
+  background: var(--gold);
+  color: #0a0a0a;
+}
+
+/* Reusable gold text gradient */
+.text-gold-gradient {
+  background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero backdrop: dark steel with gold glow */
+.hero-backdrop {
+  background:
+    radial-gradient(1200px 500px at 50% -10%, rgba(212, 175, 55, 0.18), transparent 60%),
+    radial-gradient(800px 400px at 90% 10%, rgba(212, 175, 55, 0.08), transparent 60%),
+    linear-gradient(180deg, #0a0a0a 0%, #0e0e0e 100%);
 }
