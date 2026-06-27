@@ -41,6 +41,15 @@ export default function ContactPage() {
                   </a>
                 </li>
                 <li>
+                  <span className="text-muted">Phone: </span>
+                  <a
+                    href={site.phone2Href}
+                    className="font-semibold text-foreground hover:text-gold"
+                  >
+                    {site.phone2}
+                  </a>
+                </li>
+                <li>
                   <span className="text-muted">Email: </span>
                   <a
                     href={site.emailHref}

@@ -14,7 +14,7 @@ export default function Home() {
       {/* Hero */}
       <section className="hero-backdrop relative overflow-hidden border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
-          <span className="inline-block rounded-full border border-gold/40 bg-black/40 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gold">
+          <span className="inline-block rounded-full border border-gold/40 bg-background/40 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gold">
             {site.tagline}
           </span>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
@@ -75,7 +75,7 @@ export default function Home() {
               href={`/services#${service.slug}`}
               className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition hover:border-gold/60 hover:bg-surface-2"
             >
-              <h3 className="text-lg font-semibold text-foreground transition group-hover:text-gold">
+              <h3 className="text-2xl font-semibold text-foreground transition group-hover:text-gold sm:text-3xl">
                 {service.title}
               </h3>
               <p className="mt-2 text-sm text-muted">{service.blurb}</p>
@@ -110,7 +110,7 @@ export default function Home() {
             {whyChooseUs.map((reason) => (
               <div
                 key={reason}
-                className="flex items-start gap-3 rounded-lg border border-border bg-black p-5"
+                className="flex items-start gap-3 rounded-lg border border-border bg-background p-5"
               >
                 <span className="mt-0.5 text-gold">✓</span>
                 <span className="text-sm font-medium">{reason}</span>

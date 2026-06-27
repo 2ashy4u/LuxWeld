@@ -31,7 +31,7 @@ export function QuoteForm() {
 
   const errors = state.fieldErrors ?? {};
   const inputClass =
-    "w-full rounded-md border border-border bg-black px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold";
+    "w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold";
 
   return (
     <form action={formAction} className="space-y-5" noValidate>

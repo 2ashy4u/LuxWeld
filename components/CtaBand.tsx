@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export function CtaBand() {
   return (
-    <section className="border-y border-gold/30 bg-gradient-to-r from-black via-surface to-black">
+    <section className="border-y border-gold/30 bg-gradient-to-r from-background via-surface to-background">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-12 text-center sm:px-6 lg:flex-row lg:px-8 lg:text-left">
         <div>
           <h2 className="text-2xl font-bold sm:text-3xl">

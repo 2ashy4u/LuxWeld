@@ -11,7 +11,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-black/80 backdrop-blur supports-[backdrop-filter]:bg-black/60">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
 
@@ -38,9 +38,8 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition hover:text-gold ${
-                  active ? "text-gold" : "text-foreground"
-                }`}
+                className={`rounded-md px-3 py-2 text-sm font-medium transition hover:text-gold ${active ? "text-gold" : "text-foreground"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -75,7 +74,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <nav className="border-t border-border bg-black md:hidden">
+        <nav className="border-t border-border bg-surface md:hidden">
           <div className="mx-auto flex max-w-7xl flex-col px-4 py-3 sm:px-6">
             {nav.map((item) => (
               <Link

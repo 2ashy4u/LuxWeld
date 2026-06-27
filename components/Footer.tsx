@@ -5,7 +5,7 @@ import { services } from "@/lib/data";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-auto border-t border-border bg-black">
+    <footer className="mt-auto border-t border-border bg-surface">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <span className="text-lg font-bold text-foreground">
@@ -58,6 +58,11 @@ export function Footer() {
             <li>
               <a href={site.phoneHref} className="transition hover:text-gold">
                 {site.phone}
+              </a>
+            </li>
+            <li>
+              <a href={site.phone2Href} className="transition hover:text-gold">
+                {site.phone2}
               </a>
             </li>
             <li>

@@ -9,7 +9,7 @@ export function Logo({ className = "" }: { className?: string }) {
       aria-label={`${site.name} home`}
     >
       {/* Placeholder mark until the real logo image is supplied */}
-      <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-gold/60 bg-black">
+      <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-md border border-gold/60 bg-background">
         <span className="text-gold font-bold text-lg leading-none">LW</span>
       </span>
       <span className="flex flex-col leading-none">

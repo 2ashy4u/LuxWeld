@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --surface: #141414;
-  --surface-2: #1c1c1c;
-  --foreground: #f5f5f5;
-  --muted: #a3a3a3;
-  --border: #2a2a2a;
+  --background: #121212;
+  --surface: #1a1a1a;
+  --surface-2: #232323;
+  --foreground: #f4f4f5;
+  --muted: #9b9b9b;
+  --border: #2c2c2c;
 
-  /* Brand: black & gold */
+  /* Brand: carbon fiber + gold */
   --gold: #d4af37;
   --gold-light: #e7c65b;
   --gold-dark: #a9851d;
-  --black: #0a0a0a;
+  --black: #0e0e0e;
 }
 
 @theme inline {
@@ -36,15 +36,33 @@ html {
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+
+  /* Carbon fiber weave (pure CSS, no image asset) */
+  background-color: #131313;
+  background-image:
+    linear-gradient(27deg, #161616 5px, transparent 5px),
+    linear-gradient(207deg, #161616 5px, transparent 5px),
+    linear-gradient(27deg, #1d1d1d 5px, transparent 5px),
+    linear-gradient(207deg, #1d1d1d 5px, transparent 5px),
+    linear-gradient(90deg, #191919 10px, transparent 10px),
+    linear-gradient(#1b1b1b 25%,
+      #151515 25%,
+      #151515 50%,
+      transparent 50%,
+      transparent 75%,
+      #1f1f1f 75%,
+      #1f1f1f);
+  background-position:
+    0 5px, 10px 0, 0 10px, 10px 5px, 0 0, 0 0;
+  background-size: 20px 20px;
 }
 
 /* Gold selection */
 ::selection {
   background: var(--gold);
-  color: #0a0a0a;
+  color: #0e0e0e;
 }
 
 /* Reusable gold text gradient */
@@ -55,10 +73,9 @@ body {
   color: transparent;
 }
 
-/* Hero backdrop: dark steel with gold glow */
+/* Hero backdrop: gold glow layered over the carbon-fiber body */
 .hero-backdrop {
   background:
-    radial-gradient(1200px 500px at 50% -10%, rgba(212, 175, 55, 0.18), transparent 60%),
-    radial-gradient(800px 400px at 90% 10%, rgba(212, 175, 55, 0.08), transparent 60%),
-    linear-gradient(180deg, #0a0a0a 0%, #0e0e0e 100%);
+    radial-gradient(1200px 500px at 50% -10%, rgba(231, 198, 91, 0.16), transparent 55%),
+    radial-gradient(800px 400px at 90% 10%, rgba(231, 198, 91, 0.06), transparent 55%);
 }
