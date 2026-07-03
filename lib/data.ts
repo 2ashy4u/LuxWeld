@@ -201,19 +201,6 @@ export type PriceItem = {
 
 export const pricing: PriceItem[] = [
   {
-    title: "Service Call Fee",
-    price: "Starting at $___",
-  },
-  {
-    title: "Mobile Welding Rate",
-    price: "$___ per hour",
-    details: ["Minimum charge: ___ hours"],
-  },
-  {
-    title: "Shop Welding Rate",
-    price: "$___ per hour",
-  },
-  {
     title: "Emergency Service",
     price: "Premium rate applies",
     details: ["Nights, weekends, holidays", "Prices will vary"],

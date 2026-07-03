@@ -6,7 +6,7 @@ import { CtaBand } from "@/components/CtaBand";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent welding pricing: service call fees, mobile and shop rates, emergency service, travel charges, fabrication, and structural project quotes.",
+    "Welding pricing quoted per job: emergency service, travel charges, fabrication, and structural projects. Free estimates — contact us for an exact quote.",
 };
 
 export default function PricingPage() {
@@ -56,13 +56,10 @@ export default function PricingPage() {
             A note on pricing
           </h3>
           <p className="mt-2">
-            Rates marked with{" "}
-            <span className="font-mono text-gold">$___</span> are placeholders —
-            update them in{" "}
-            <span className="font-mono text-foreground">lib/data.ts</span> once
-            your final numbers are set. Specialty work (aluminum, stainless,
-            TIG) and equipment usage may carry additional charges. Materials and
-            consumables are billed separately.
+            Every job is different, so we quote each project individually.
+            Specialty work (aluminum, stainless, TIG) and equipment usage may
+            carry additional charges. Materials and consumables are billed
+            separately.
           </p>
           <Link
             href="/contact"
