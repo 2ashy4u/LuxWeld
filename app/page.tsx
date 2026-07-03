@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 import {
   services,
@@ -13,18 +14,33 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="hero-backdrop relative overflow-hidden border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
+        {/* Watermark logo */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        >
+          <Image
+            src="/logo-mark.svg"
+            alt=""
+            width={920}
+            height={610}
+            className="w-[480px] max-w-none opacity-30 sm:w-[640px] lg:w-[720px]"
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
           <span className="inline-block rounded-full border border-gold/40 bg-background/40 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-gold">
             {site.tagline}
           </span>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
-            Precision Welding &amp;{" "}
-            <span className="text-gold-gradient">Custom Fabrication</span>
+            <span className="text-gold-gradient block">Luxury Welding</span>
+            <span className="mt-3 block text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
+              Precision Welding &amp; Custom Fabrication
+            </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted">
-            Mobile and shop welding for residential, commercial, industrial, and
-            agricultural jobs. Fast response, quality workmanship, and free
-            estimates — we bring the shop to you.
+            Family operated. Mobile and shop welding for residential,
+            commercial, industrial, and agricultural jobs. Fast response,
+            quality workmanship, and free estimates — we bring the shop to you.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
