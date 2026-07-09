@@ -6,8 +6,8 @@ export const site = {
   description:
     "Luxury Welding offers mobile and shop welding, custom fabrication, structural, trailer, gate, industrial, and agricultural welding services. Fast response, free estimates, licensed and insured.",
   // TODO: replace with real contact details
-  phone: "(909) 440-7888",
-  phoneHref: "tel:+19094407888",
+  phone: "(909) 586-5216",
+  phoneHref: "tel:+19095865216",
   phone2: "(909) 301-2826",
   phone2Href: "tel:+19093012826",
   email: "luxuryweldingca@gmail.com",
